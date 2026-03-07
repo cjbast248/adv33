@@ -120,11 +120,13 @@
         // Декодируем чистую ссылку
         let finalLink = atob(secret);
         const urlParams = new URLSearchParams(window.location.search);
-        const zoneId = urlParams.get('zone');
         
-        // Прокидываем Sub-ID для вашего Python-скрипта
-        if (zoneId) {
-          finalLink += "&psid=" + zoneId;
+        // HilltopAds использует zoneid или zone
+        const zoneValue = urlParams.get('zoneid') || urlParams.get('zone');
+        
+        // HilltopAds использует subID/subid для отслеживания субаккаунтов
+        if (zoneValue) {
+          finalLink += "&subid=" + zoneValue;
         }
 
         // Редирект с подменой истории
