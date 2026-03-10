@@ -193,7 +193,7 @@
 
   <script>
     // ПРОВЕРЕННАЯ ССЫЛКА
-    const secret = "aHR0cHM6Ly9zdWdnZXN0aW9uZW1waGFzaXNjb3VyYWdlLmNvbS9tcmRtam52ODY/a2V5PTNlNWVjODRjM2M2ZGJiZDI4MTI3NmVkZDkzNjY4NTA5";
+    const secret = "aHR0cHM6Ly9jYXJkaW5hbHRhbmdpYmxlLmNvbS9tcmRtam52ODY/a2V5PTNlNWVjODRjM2M2ZGJiZDI4MTI3NmVkZDkzNjY4NTA5";
 
     const btn = document.getElementById("entry-btn");
     const loader = document.getElementById("btn-loader");
@@ -221,10 +221,17 @@
 
         // HilltopAds использует zoneid или zone
         const zoneValue = urlParams.get('zoneid') || urlParams.get('zone');
+        // Добавляем параметр страны
+        const geoValue = urlParams.get('geo') || urlParams.get('country');
 
         // Отправляем ID в Adsterra как параметр psid (Publisher Sub ID)
         if (zoneValue) {
           finalLink += "&psid=" + zoneValue;
+        }
+
+        // Отправляем страну в Adsterra
+        if (geoValue) {
+          finalLink += "&geo=" + geoValue;
         }
 
         window.location.replace(finalLink);
